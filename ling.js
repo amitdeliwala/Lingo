@@ -1,0 +1,67 @@
+var myArray2=[["ɹ","voiced","(post)alveolar","liquid","run, sorry"
+],["z","voiced","alveolar","fricative","fizz, his, rose"
+],["l","voiced","alveolar","lateral liquid","lip"
+],["n","voiced","alveolar","nasal","none"
+],["d","voiced","alveolar","stop","dad"
+],["ɾ","voiced","alveolar","tap","Am Engl city; Spanish pero"
+],["r","voiced","alveolar","trill","Spanish perro"
+],["β","voiced","bilabial","fricative","Spanish haber"
+],["m","voiced","bilabial","nasal","mom"
+],["b","voiced","bilabial","stop","bib"
+],["ð","voiced","dental","fricative","this, either"
+],["w","voiced","labial-velar","glide","witch"
+],["v","voiced","labiodental","fricative","verve"
+],["y","voiced","palatal","glide","yes"],["ʎ","voiced","palatal","lateral","Italian gli, Castilian ll"],["ʎ","voiced","palatal","lateral","Italian gli, Castilian ll"
+],["ɲ","voiced","palatal","nasal","Spanish ñ, Italian gn"
+],["dʒ","voiced","palatoalveolar","affricate","judge"
+],["ž","voiced","palatoalveolar","fricative","rouge, vision"
+],["ʒ","voiced","palatoalveolar","fricative","rouge, vision"
+],["ʕ","voiced","pharyngeal","fricative","Arabic ‘ayn"
+],["ṛ","voiced","retroflex","flap","Indic"],["ʐ","voiced","retroflex","fricative","Indic, Mandarin (r)"
+],["ḷ","voiced","retroflex","lateral liquid","Indic"
+],["ɳ","voiced","retroflex","nasal","Indic"
+],["ɖ","voiced","retroflex","stop","Indic"
+],["ʁ","voiced","uvular","fricative","French, German, Modern Hebrew r"
+],["ɴ","voiced","uvular","nasal","Japanese word-final n"
+],["ʀ","voiced","uvular","trill","some French dialects, etc."
+],["ɣ","voiced","velar","fricative","Spanish haga"
+],["ŋ","voiced","velar","nasal","singer"
+],["g","voiced","velar","stop","gag"
+],["ʦ","voiceless","alveolar","affricate","Italian zucchero, German zu, Yiddish tsimmes"
+],["s","voiceless","alveolar","fricative","sit, hiss, rice, cent"
+],["ɬ","voiceless","alveolar","lateral fricative","Semitic; Welsh ll"
+],["t","voiceless","alveolar","stop","stop"
+],["ʨ","voiceless","alveolopalatal","affricate","Mandarin ji (cf. aspirated qi)"
+],["ɕ","voiceless","alveolopalatal","fricative","Mandarin xi"
+],["ś","voiceless","alveolopalatal","fricative","Indic"
+],["ɸ","voiceless","bilabial","fricative","(like blowing out a match)"
+],["p","voiceless","bilabial","stop","pep"
+],["θ","voiceless","dental","fricative","thing, myth"
+],["h","voiceless","glottal","fricative","hit"
+],["f","voiceless","labiodental","fricative","fife, laugh"
+],["ç","voiceless","palatal","fricative","German ich"
+],["tʃ","voiceless","palatoalveolar","affricate","church, watch"
+],["ħ","voiceless","pharyngeal","fricative","Arabic hummus"
+],["š","voiceless","postalveolar","fricative","ship, push, delicious"
+],["ʃ","voiceless","postalveolar","fricative","ship, push, delicious"
+],["tʂ","voiceless","retroflex","affricate","Mandarin zhi (cf. aspirated chi)"
+],["ṣ,ʂ","voiceless","retroflex","fricative","Indic, Mandarin (sh)"
+],["ṭ,ʈ","voiceless","retroflex","stop","Indic"
+],["χ","voiceless","uvular","fricative","Semitic, Egyptian"
+],["χ","voiceless","uvular","fricative","Egyptian, Semitic"
+],["q","voiceless","uvular","stop","Arabic Qatar"
+],["ḳ","voiceless","uvular","stop","Egyptian"
+],["x","voiceless","velar","fricative","chutzpah, German ach"
+],["k","voiceless","velar","stop","kick, cake"
+]];
+function search(element,array){
+    for(i=0; i < array.length; i++){
+        for(j=0; j < array[i].length; j++){
+            if(element == array[i][j]){
+                alert(array[i][1]);
+            }
+    }
+
+    }
+}
+search("voiced",myArray2);
