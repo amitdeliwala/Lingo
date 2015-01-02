@@ -1,6 +1,11 @@
 var status=[-1,-1,-1];
 var voice=['v0','v1'];
-var place
+var place=['p0','p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11'];
+var manner=['m0','m1','m2','m3','m4','m5'];
+var searchv=["voiced","voiceless"];
+var searchp=["bilabial","labiodental","dental","alveolar","postalveolar","retroflex","alveolopalatal","palatal","velar","uvular","pharyngeal","glottal"];
+var searchm=["nasal","stop","fricative","tap","trill","lateral"];
+
 var myArray2=[['\u0279',"voiced","(post)alveolar","liquid","run, sorry"
 ],["z","voiced","alveolar","fricative","fizz, his, rose"
 ],["l","voiced","alveolar","lateral liquid","lip"
@@ -57,37 +62,111 @@ var myArray2=[['\u0279',"voiced","(post)alveolar","liquid","run, sorry"
 ],["x","voiceless","velar","fricative","chutzpah, German ach"
 ],["\u1E33","voiceless","velar","stop","kick, cake"
 ]];
-function search(element,array){
-	var letters = [];
-    for(i=0; i < array.length; i++){
-        for(j=0; j < array[i].length; j++){
-            if(element == array[i][j]){
-                letters[letters.length]=array[i][0];
-            }
-    }
-    }
-    document.write(letters);
-}
 
-function checkstatus(){
-	counter1=0;
+function search(status,array){
+	results=range(len(array));
+	if(not(status[0]==-1)){
+		temp=[];
+		searchval=searchv[status[0]];
+		for(index=0; index<results.length; index++){
+			element=results[index];
+			if(array[element][1]==searchval){
+				temp[temp.length]=element;
+			}
+		}
+		results=temp;
+    }
+    if(not(status[1]==-1)){
+		temp=[];
+		searchval=searchp[status[1]];
+		for(index=0; index<results.length; index++){
+			element=results[index];
+			if(array[element][2]==searchval){
+				temp[temp.length]=element;
+			}
+		}
+		results=temp;
+    }
+    if(not(status[2]==-1)){
+		temp=[];
+		searchval=searchm[status[2]];
+		for(index=0; index<results.length; index++){
+			element=results[index];
+			if(array[element][3]==searchval){
+				temp[temp.length]=element;
+			}
+		}
+		results=temp;
+    }
+    return results;
+}
+function range(start, stop, step){
+    if (typeof stop=='undefined'){
+        // one param defined
+        stop = start;
+        start = 0;
+    }
+    if (typeof step=='undefined'){
+        step = 1;
+    }
+    if ((step>0 && start>=stop) || (step<0 && start<=stop)){
+        return [];
+    }
+    var result = [];
+    for (var i=start; step>0 ? i<stop : i>stop; i+=step){
+        result.push(i);
+    }
+    return result;
+}
+function updatestat(){
+	found1=0;
 	for(x=0;x<2;x++){
 		if(document.getElementById(voice[x]).checked){
-			counter1++;
-		}
-	}
-	if(counter1===1){
-		for(x=0;x<2;x++){
-			if(document.getElementById(voice[x]).checked){
-				status[0] = x;
+			found++;
+			if(found==1){
+				status[0]=x;
 			}
 		}
 	}
-	else if(counter1===0){
+	if(found1===0){
 		status[0]=-1;
 	}
-	else{
-		alert("both selected");
+	else if(found1>1){
+		status[0]=-1;
+		alert("more than one selected");
 	}
-	/*  place  */
+
+	found2=0;
+	for(x=0;x<12;x++){
+		if(document.getElementById(place[x]).checked){
+			found2++;
+			if(found2==1){
+				status[1]=x;
+			}
+		}
+	}
+	if(found2===0){
+		status[1]=-1;
+	}
+	else if(found2>1){
+		status[1]=-1;
+		alert("more than one selected");
+	}
+
+	found3=0;
+	for(x=0;x<6;x++){
+		if(document.getElementById(place[x]).checked){
+			found3++;
+			if(found3==1){
+				status[2]=x;
+			}
+		}
+	}
+	if(found3===0){
+		status[2]=-1;
+	}
+	else if(found3>1){
+		status[2]=-1;
+		alert("more than one selected");
+	}
 }
