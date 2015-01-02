@@ -1,4 +1,7 @@
 var status=[-1,-1,-1];
+var s1=-1;
+var s2=-1;
+var s0=-1;
 var voice=['v0','v1'];
 var place=['p0','p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11'];
 var manner=['m0','m1','m2','m3','m4','m5'];
@@ -63,11 +66,11 @@ var myArray2=[['\u0279',"voiced","(post)alveolar","liquid","run, sorry"
 ],["\u1E33","voiceless","velar","stop","kick, cake"
 ]];
 
-function search(status,array){
-	results=range(len(array));
-	if(not(status[0]==-1)){
+function search(array){
+	results=range(array.length);
+	if(s0>=0){
 		temp=[];
-		searchval=searchv[status[0]];
+		searchval=searchv[s0];
 		for(index=0; index<results.length; index++){
 			element=results[index];
 			if(array[element][1]==searchval){
@@ -76,9 +79,9 @@ function search(status,array){
 		}
 		results=temp;
     }
-    if(not(status[1]==-1)){
+    if(s1>=0){
 		temp=[];
-		searchval=searchp[status[1]];
+		searchval=searchp[s1];
 		for(index=0; index<results.length; index++){
 			element=results[index];
 			if(array[element][2]==searchval){
@@ -87,9 +90,9 @@ function search(status,array){
 		}
 		results=temp;
     }
-    if(not(status[2]==-1)){
+    if(s2>=0){
 		temp=[];
-		searchval=searchm[status[2]];
+		searchval=searchm[s2];
 		for(index=0; index<results.length; index++){
 			element=results[index];
 			if(array[element][3]==searchval){
@@ -98,7 +101,11 @@ function search(status,array){
 		}
 		results=temp;
     }
-    return results;
+    print="";
+    for(x=0;x<results.length; x++){
+    	print=print+array[x][0];
+	}
+	document.getElementById("results").innerHTML=print;
 }
 function range(start, stop, step){
     if (typeof stop=='undefined'){
@@ -118,22 +125,24 @@ function range(start, stop, step){
     }
     return result;
 }
-function updatestat(){
+function change(){
+	var gavealert=false;
 	found1=0;
 	for(x=0;x<2;x++){
 		if(document.getElementById(voice[x]).checked){
-			found++;
-			if(found==1){
-				status[0]=x;
+			found1++;
+			if(found1==1){
+				s0=x;
 			}
 		}
 	}
 	if(found1===0){
-		status[0]=-1;
+		s0=-1;
 	}
 	else if(found1>1){
-		status[0]=-1;
-		alert("more than one selected");
+		s0=-1;
+		document.getElementById("alert").innerHTML="More than one selected. Please deselect.";
+		gavealert=true;
 	}
 
 	found2=0;
@@ -141,32 +150,47 @@ function updatestat(){
 		if(document.getElementById(place[x]).checked){
 			found2++;
 			if(found2==1){
-				status[1]=x;
+				s1=x;
 			}
 		}
 	}
 	if(found2===0){
-		status[1]=-1;
+		s1=-1;
 	}
 	else if(found2>1){
-		status[1]=-1;
-		alert("more than one selected");
+		s1=-1;
+		document.getElementById("alert").innerHTML="More than one selected. Please deselect.";
+		gavealert=true;
 	}
 
 	found3=0;
 	for(x=0;x<6;x++){
-		if(document.getElementById(place[x]).checked){
+		if(document.getElementById(manner[x]).checked){
 			found3++;
 			if(found3==1){
-				status[2]=x;
+				s2=x;
 			}
 		}
 	}
 	if(found3===0){
-		status[2]=-1;
+		s2=-1;
 	}
 	else if(found3>1){
-		status[2]=-1;
-		alert("more than one selected");
+		s2=-1;
+		document.getElementById("alert").innerHTML="More than one selected. Please deselect.";
+
+		gavealert=true;
+		
 	}
+	if(gavealert===false){
+		document.getElementById("alert").innerHTML="";	
+	}
+	if(found1<2 && found2<2 && found3<2){
+		search(myArray2);
+
+	}
+	else{
+		document.getElementById("results").innerHTML="";
+	}
+
 }
