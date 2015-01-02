@@ -103,7 +103,7 @@ function search(array){
     }
     print="";
     for(x=0;x<results.length; x++){
-    	print=print+array[x][0];
+    	print=print+array[results[x]][0];
 	}
 	document.getElementById("results").innerHTML=print;
 }
